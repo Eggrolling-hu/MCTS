@@ -14,7 +14,7 @@ type Action interface {
 // State is the interface to describe a game supports to satisfy the MCTS.
 type State interface {
 	Deepcopy() State
-	GetAvailableActions() []Action // Return all the aviable actions
+	GetAvailableActions() []Action // Return all the available actions
 	TakeAction(action Action)      // Take action to change the state
 	IsForcedTerminated() bool      // Return the state terminate for any special limitation
 	Evaluate() float64             // Return the state evaluation
@@ -46,7 +46,7 @@ func NewTreeNode(parent *TreeNode, state State, action Action, ucbConstant float
 		untriedActions: state.GetAvailableActions(), // Initially the node starts with every node unexplored.
 		children:       nil,                         // No children yet.
 		ucbConstant:    ucbConstant,                 // Whole tree uses same constant.
-		ucbValues:      0.0,                         // No valute yet.
+		ucbValues:      0.0,                         // No value yet.
 		IsRivalRound:   state.IsRivalRound(),        // For min-max tree to control the selection
 	}
 	return &node
